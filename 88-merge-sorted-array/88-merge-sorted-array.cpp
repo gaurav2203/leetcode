@@ -1,17 +1,26 @@
 class Solution {
 public:
-    void merge(vector<int>& arr1, int m, vector<int>& arr2, int n) {
-        int i= m-1, j= n-1, k= m+n-1;
-        while(i>=0 && j >=0 && i<=k){
-            if(arr1[i] < arr2[j]){
-                arr1[k--]= arr2[j--];
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int p1= m-1;
+        int p2= n-1;
+        int rep_ptr= m+n- 1;
+        
+        while(p2>=0 && p1 >=0 && p1<=rep_ptr){
+            if(nums1[p1] < nums2[p2]){
+                nums1[rep_ptr]= nums2[p2];
+                p2--;
+                rep_ptr--;
             }
             else{
-                swap(arr1[k--], arr1[i--]);
+                swap(nums1[p1], nums1[rep_ptr]);
+                p1--;
+                rep_ptr--;
             }
         }
-        while(j>=0){
-            arr1[k--]= arr2[j--];
+        while(p2 >=0){
+            nums1[rep_ptr]= nums2[p2];
+            rep_ptr--;
+            p2--;
         }
     }
 };
