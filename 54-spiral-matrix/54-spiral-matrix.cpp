@@ -5,38 +5,38 @@ public:
         int m= matrix.size();
         int n= matrix[0].size();
         int top= 0;
-        int down= m-1;
+        int bottom= m-1;
         int left= 0;
-        int right= n-1;
-        int dir=0;
+        int right= n- 1;
+        int dir= 0;
         
-        while(top<= down && left <= right){
-            if(dir == 0){
-                for(int i=left; i<=right; i++){
+        while(top <= bottom && left <= right){
+            if(dir ==0){
+                for(int i=left; i<= right; i++){
                     ans.push_back(matrix[top][i]);
                 }
                 top++;
             }
-            else if(dir == 1){
-                for(int i=top; i<=down; i++){
+            else if(dir ==1){
+                for(int i=top; i<= bottom; i++){
                     ans.push_back(matrix[i][right]);
+                    
                 }
                 right--;
             }
             else if(dir == 2){
                 for(int i=right; i>=left; i--){
-                    ans.push_back(matrix[down][i]);
+                    ans.push_back(matrix[bottom][i]);
                 }
-                down--;
+                bottom--;
             }
-            else if(dir == 3){
-                for(int i=down; i>= top; i--){
+            else{
+                for(int i= bottom; i>= top; i--){
                     ans.push_back(matrix[i][left]);
                 }
                 left++;
             }
-            
-            dir= (dir+1)%4;
+            dir= (dir+ 1)%4;
         }
         return ans;
     }
